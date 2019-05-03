@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,6 +9,9 @@ class App extends React.Component {
   }
 
   onClickTest(event) {
+    Axios.get('test').then(results => {
+      console.log(results.data);
+    })
     console.log(event.target.textContent);
   }
 
