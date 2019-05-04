@@ -4,8 +4,13 @@ import CalculatorContainer from './calculatorContainer';
 import Calculate from './calculationLogic'
 /*
 TODO
-Make a current-state area to see whats being typed;
-Make a display area for results;
+Add calculations to the database
+Update list based on calls to the database
+  refresh every second
+deploy on aws
+
+implement dot or make 0 bigger button
+fix calculator bug, 
 */
 const testData = [
   '1 + 1 = 2',
@@ -27,24 +32,24 @@ class App extends React.Component {
       equation: '',
       prevResults: []
     };
-    this.onClickTest = this.onClickTest.bind(this);
+    this.insertToDB = this.insertToDB.bind(this);
     this.updateEquation = this.updateEquation.bind(this);
     this.runCalculation = this.runCalculation.bind(this);
   }
 
   componentWillMount() {
-    console.log('componentWillMount')
+    // console.log('componentWillMount')
     this.setState({
       prevResults: testData
     })
   }
 
   runCalculation() {
-    console.log(Calculate(this.state.equation));
+    let calcString = this.state.equation;
     this.setState({
       equation: ''
     });
-
+    return Calculate(calcString);
   }
 
   updateEquation(event) {
@@ -57,12 +62,12 @@ class App extends React.Component {
     })
   }
 
-  onClickTest(event) {
-    // Axios.post('insert', {
-    //   payload: event.target.textContent
-    // }).then(results => {
-    //   console.log(results.data);
-    // });
+  insertToDB(event) {
+    Axios.post('insert', {
+      payload: this.runCalculation()
+    }).then(results => {
+      console.log(results.data);
+    });
     console.log(event.target.textContent);
   }
 
@@ -72,7 +77,7 @@ class App extends React.Component {
         testData={this.state.prevResults}
         equationText={this.state.equation}
         clickFunc={this.updateEquation}
-        runCalculation={this.runCalculation} />
+        runCalculation={this.insertToDB} />
     )
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EquationArea = (props) => (
-  <div className="equationArea">
+  <div className="equation">
     {props.equationText}
   </div>
 )

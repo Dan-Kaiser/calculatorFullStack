@@ -1,21 +1,39 @@
-.calcButton {
-  width: 40px;
-  height: 40px;
+.calculatorContainer {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(60px, auto);
+}
+
+.numButton, .zero, .dot, .clear, .operator, .equals {
   background: gray;
   text-align: center;
-  line-height: 40px;
+  line-height: 60px;
   border: 1px solid black;
   border-radius: 10%;
   color: white;
   cursor: pointer;
 }
 
-.equationArea {
-  width: 600px;
-  height: 40px;
-  line-height: 40px;
+.numButton, .zero, .dot, .clear, .equals { 
+  background: gray;
+}
+
+.operator {
+  background: rgb(226, 161, 40);
+}
+
+.equation {
+  grid-column: 1/4;
+  line-height: 60px;
   text-align: center;
   background: aquamarine;
   border: 1px solid black;
+}
 
+.prevCalcsArea {
+  grid-column: 1/5;
+  background: rgb(164, 164, 255);
+  text-align: center;
 }
