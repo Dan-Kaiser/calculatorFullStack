@@ -2,10 +2,18 @@ import React from 'react';
 import Axios from 'axios';
 import CalculatorContainer from './calculatorContainer';
 
+/*
+TODO
+Make a current-state area to see whats being typed;
+Make a display area for results;
+*/
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      equation: ''
+    };
     this.onClickTest = this.onClickTest.bind(this);
   }
 
@@ -20,7 +28,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <CalculatorContainer clickFunc={this.onClickTest} />
+      <CalculatorContainer equationText={this.state.equation} clickFunc={this.onClickTest} />
     )
   }
 }

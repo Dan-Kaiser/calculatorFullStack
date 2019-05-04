@@ -1,0 +1,18 @@
+.calcButton {
+  width: 40px;
+  height: 40px;
+  background: gray;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid black;
+  border-radius: 10%;
+  color: white;
+}
+
+.equationArea {
+  width: 600px;
+  height: 40px;
+  background: aquamarine;
+  border: 1px solid black;
+
+}

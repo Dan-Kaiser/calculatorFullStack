@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CalculatorButton = (props) => (
-  <div onClick={props.clickFunc}>
+  <div className="calcButton" onClick={props.clickFunc}>
     {props.buttonText}
   </div >
 )
