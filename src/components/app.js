@@ -15,6 +15,17 @@ class App extends React.Component {
       equation: ''
     };
     this.onClickTest = this.onClickTest.bind(this);
+    this.updateEquation = this.updateEquation.bind(this);
+  }
+
+  updateEquation(event) {
+    let text = event.target.textContent;
+    let updatedEquation = this.state.equation + text;
+    this.setState({
+      equation: updatedEquation
+    }, () => {
+      console.log(this.state.equation);
+    })
   }
 
   onClickTest(event) {
@@ -28,7 +39,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <CalculatorContainer equationText={this.state.equation} clickFunc={this.onClickTest} />
+      <CalculatorContainer equationText={this.state.equation} clickFunc={this.updateEquation} />
     )
   }
 }
