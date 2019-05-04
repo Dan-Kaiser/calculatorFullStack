@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import CalculatorContainer from './calculatorContainer';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,22 +10,17 @@ class App extends React.Component {
   }
 
   onClickTest(event) {
-    // Axios.get('test').then(results => {
+    // Axios.post('insert', {
+    //   payload: event.target.textContent
+    // }).then(results => {
     //   console.log(results.data);
     // });
-    Axios.post('insert', {
-      payload: event.target.textContent
-    }).then(results => {
-      console.log(results.data);
-    });
     console.log(event.target.textContent);
   }
 
   render() {
     return (
-      <div onClick={this.onClickTest}>
-        React Hello World
-      </div>
+      <CalculatorContainer clickFunc={this.onClickTest} />
     )
   }
 }
