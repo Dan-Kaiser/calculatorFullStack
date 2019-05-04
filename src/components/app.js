@@ -9,9 +9,14 @@ class App extends React.Component {
   }
 
   onClickTest(event) {
-    Axios.get('test').then(results => {
+    // Axios.get('test').then(results => {
+    //   console.log(results.data);
+    // });
+    Axios.post('insert', {
+      payload: event.target.textContent
+    }).then(results => {
       console.log(results.data);
-    })
+    });
     console.log(event.target.textContent);
   }
 

@@ -23,6 +23,7 @@ const calculationCounter = (callback) => {
 
 const insertResult = (val, callback) => {
   // console.log('inside insert Result, with value', val);
+  console.log(val);
   let currCalc = new Calculation({ resultString: val });
   currCalc.save((err, currCalc) => {
     console.log('inside save callback')

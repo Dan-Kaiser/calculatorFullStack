@@ -1,8 +1,9 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+const db = require('../database/index.js');
+
+const app = express();
 const port = process.env.port || 3000;
-const db = require('../database/index.js')
 
 app.use(express.static('../client/dist'))
 app.use(bodyParser.json());
@@ -16,9 +17,12 @@ app.get('/count', (req, res) => {
   })
 });
 app.post('/insert', (req, res) => {
-  db.insertResult('2 + 4 = 6', (results) => {
+  console.log(req.body);
+  let str = req.body.payload;
+  db.insertResult(str, (results) => {
+    console.log('severside return results', results);
     if (results) {
-      res.send(results);
+      res.send(`these are the results ${results}`);
     } else {
       res.send('error in insert');
     }
