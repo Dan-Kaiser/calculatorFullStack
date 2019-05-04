@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import CalculatorContainer from './calculatorContainer';
-
+import Calculate from './calculationLogic'
 /*
 TODO
 Make a current-state area to see whats being typed;
@@ -29,6 +29,7 @@ class App extends React.Component {
     };
     this.onClickTest = this.onClickTest.bind(this);
     this.updateEquation = this.updateEquation.bind(this);
+    this.runCalculation = this.runCalculation.bind(this);
   }
 
   componentWillMount() {
@@ -38,13 +39,21 @@ class App extends React.Component {
     })
   }
 
+  runCalculation() {
+    console.log(Calculate(this.state.equation));
+    this.setState({
+      equation: ''
+    });
+
+  }
+
   updateEquation(event) {
     let text = event.target.textContent;
     let updatedEquation = this.state.equation + text;
     this.setState({
       equation: updatedEquation
     }, () => {
-      console.log(this.state.equation);
+      // console.log(this.state.equation);
     })
   }
 
@@ -59,7 +68,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <CalculatorContainer testData={this.state.prevResults} equationText={this.state.equation} clickFunc={this.updateEquation} />
+      <CalculatorContainer
+        testData={this.state.prevResults}
+        equationText={this.state.equation}
+        clickFunc={this.updateEquation}
+        runCalculation={this.runCalculation} />
     )
   }
 }

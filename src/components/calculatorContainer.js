@@ -23,7 +23,7 @@ const CalculatorContainer = (props) => {
       {/* <CalculatorButton buttonText='.' clickFunc={props.clickFunc} /> */}
       <CalculatorButton buttonText='/' clickFunc={props.clickFunc} />
       {/* <CalculatorButton buttonText='C' clickFunc={props.clickFunc} /> */}
-      <CalculatorButton buttonText='=' clickFunc={props.clickFunc} />
+      <CalculatorButton buttonText='=' clickFunc={props.runCalculation} />
       <PrevCalcsArea recentArr={props.testData} />
     </div >
   )
