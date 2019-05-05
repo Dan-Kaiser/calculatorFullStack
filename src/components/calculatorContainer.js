@@ -23,12 +23,12 @@ const CalculatorContainer = (props) => {
       <CalculatorButton classNamed='numButton' buttonText='3' clickFunc={props.clickFunc} />
       <CalculatorButton classNamed='operator' buttonText='-' clickFunc={props.clickFunc} />
       <CalculatorButton classNamed='zero numButton' buttonText='0' clickFunc={props.clickFunc} />
-      <CalculatorButton classNamed='dot' buttonText='.' clickFunc={() => {
+      {/* <CalculatorButton classNamed='dot' buttonText='.' clickFunc={() => {
         console.log('either impliment me or make the zero button bigger');
-      }} />
+      }} /> */}
       <CalculatorButton classNamed='equals' buttonText='=' clickFunc={props.runCalculation} />
       <CalculatorButton classNamed='operator' buttonText='+' clickFunc={props.clickFunc} />
-      <PrevCalcsArea recentArr={props.testData} />
+      <PrevCalcsArea recentArr={props.data} />
     </div >
   )
 }

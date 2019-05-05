@@ -4,77 +4,107 @@ import CalculatorContainer from './calculatorContainer';
 import Calculate from './calculationLogic'
 /*
 TODO
-Add calculations to the database
-Update list based on calls to the database
+Add calculations to the database -CHECK
+Update list based on calls to the database -CHECK
   refresh every second
-deploy on aws
 
-implement dot or make 0 bigger button
-fix calculator bug, 
+DEPLOY on aws
+
+implement dot or make 0 bigger button -- TODO
+deal with trailing 0s -- TODO
+
+my idea is to keep a current number on state, 
+  To keep track of current number, just keep adding the digits to it until you hit an operator
+    if you hit an operator, reset it to an empty string.
+  then use that to check for adding . or 0 to a number.
+  if the number already contains a dot, don't add one
+  if there's nothing in the number yet, don't add zeros
+
+fix calculator bug,  - CHECK
 */
-const testData = [
-  '1 + 1 = 2',
-  '2 + 2 = 4',
-  '3 + 3 = 6',
-  '4 + 4 = 8',
-  '5 + 5 = 10',
-  '6 + 6 = 12',
-  '7 + 7 = 14',
-  '8 + 8 = 16',
-  '9 + 9 = 18',
-  '0 + 0 = 0'
-];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       equation: '',
-      prevResults: []
+      prevResults: [],
+      operator: false,
+      currentNumber: ''
     };
     this.insertToDB = this.insertToDB.bind(this);
+    this.queryRecentResults = this.queryRecentResults.bind(this);
     this.updateEquation = this.updateEquation.bind(this);
     this.runCalculation = this.runCalculation.bind(this);
   }
 
   componentWillMount() {
-    // console.log('componentWillMount')
-    this.setState({
-      prevResults: testData
+    this.queryRecentResults();
+    // window.setInterval(this.queryRecentResults, 1000);
+  }
+
+  queryRecentResults() {
+    Axios.get('recent').then(results => {
+      // console.log('results', results);
+      const updatedResults = results.data.map(item => {
+        return item.resultString;
+      })
+      this.setState({
+        prevResults: updatedResults
+      })
     })
   }
 
   runCalculation() {
     let calcString = this.state.equation;
-    this.setState({
-      equation: ''
-    });
-    return Calculate(calcString);
+    let result = Calculate(calcString);
+    if (result) {
+      this.setState({
+        equation: ''
+      });
+    }
+    return result;
   }
 
   updateEquation(event) {
     let text = event.target.textContent;
-    let updatedEquation = this.state.equation + text;
+    let currOperator = this.state.operator;
+    let updatedEquation = this.state.equation;
+    if (text === 'x' || text === '/' || text === '+' || text === '-') {
+      if (currOperator === false) {
+        updatedEquation += text;
+        currOperator = true;
+      } else {
+        let newOperator = updatedEquation.slice(0, -1) + text;
+        updatedEquation = newOperator;
+      }
+    } else {
+      updatedEquation += text;
+      currOperator = false;
+    }
     this.setState({
-      equation: updatedEquation
+      equation: updatedEquation,
+      operator: currOperator
     }, () => {
       // console.log(this.state.equation);
     })
   }
 
   insertToDB(event) {
-    Axios.post('insert', {
-      payload: this.runCalculation()
-    }).then(results => {
-      console.log(results.data);
-    });
-    console.log(event.target.textContent);
+    let calculation = this.runCalculation();
+    if (calculation) {
+      Axios.post('insert', {
+        payload: calculation
+      }).then(results => {
+        this.queryRecentResults();
+      });
+    }
   }
 
   render() {
     return (
       <CalculatorContainer
-        testData={this.state.prevResults}
+        data={this.state.prevResults}
         equationText={this.state.equation}
         clickFunc={this.updateEquation}
         runCalculation={this.insertToDB} />

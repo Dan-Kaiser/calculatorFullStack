@@ -14,10 +14,15 @@
   border-radius: 10%;
   color: white;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .numButton, .zero, .dot, .clear, .equals { 
   background: gray;
+}
+
+.zero {
+  grid-column: 1/3;
 }
 
 .operator {
@@ -30,6 +35,7 @@
   text-align: center;
   background: aquamarine;
   border: 1px solid black;
+  font-size: 20px;
 }
 
 .prevCalcsArea {
