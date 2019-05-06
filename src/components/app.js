@@ -3,15 +3,9 @@ import Axios from 'axios';
 import CalculatorContainer from './calculatorContainer';
 import Calculate from './calculationLogic'
 /*
-TODO
-Add calculations to the database -CHECK
-Update list based on calls to the database -CHECK
-  refresh every second
-
-DEPLOY on aws
-
 implement dot or make 0 bigger button -- TODO
 deal with trailing 0s -- TODO
+deal with starting operators -- TODO
 
 my idea is to keep a current number on state, 
   To keep track of current number, just keep adding the digits to it until you hit an operator
@@ -19,8 +13,6 @@ my idea is to keep a current number on state,
   then use that to check for adding . or 0 to a number.
   if the number already contains a dot, don't add one
   if there's nothing in the number yet, don't add zeros
-
-fix calculator bug,  - CHECK
 */
 
 class App extends React.Component {
