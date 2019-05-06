@@ -9,9 +9,9 @@ const Calculate = (str) => {
     if (currStr[currStr.length - 1] === operators[i]) {
       return null;
     }
-    if (!currStr.includes(operators[i])) {
-      return null;
-    }
+    // if (!currStr.includes(operators[i])) {
+    //   return null;
+    // }
   }
 
   let result = eval(currStr);

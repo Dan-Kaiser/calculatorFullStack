@@ -36,11 +36,20 @@ class App extends React.Component {
     this.queryRecentResults = this.queryRecentResults.bind(this);
     this.updateEquation = this.updateEquation.bind(this);
     this.runCalculation = this.runCalculation.bind(this);
+    this.clearState = this.clearState.bind(this);
   }
 
   componentWillMount() {
     this.queryRecentResults();
     // window.setInterval(this.queryRecentResults, 1000);
+  }
+
+  clearState() {
+    this.setState({
+      equation: '',
+      operator: false,
+      currentNumber: ''
+    })
   }
 
   queryRecentResults() {
@@ -104,6 +113,7 @@ class App extends React.Component {
   render() {
     return (
       <CalculatorContainer
+        clearFunc={this.clearState}
         data={this.state.prevResults}
         equationText={this.state.equation}
         clickFunc={this.updateEquation}

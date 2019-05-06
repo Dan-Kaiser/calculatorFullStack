@@ -1,24 +1,27 @@
-.calculatorContainer {
-  display: grid;
+body {
+  color: white;
+}
 
+.calculatorContainer {
+  width: 320px;
+  display: grid;
+  /* color: white; */
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(60px, auto);
+  background: black;
+  padding: 10px;
 }
 
 .numButton, .zero, .dot, .clear, .operator, .equals {
-  background: gray;
+  background: #3e3e3e;
   text-align: center;
   line-height: 60px;
   border: 1px solid black;
-  border-radius: 10%;
+  border-radius: 100%;
   color: white;
   cursor: pointer;
-  font-size: 20px;
-}
-
-.numButton, .zero, .dot, .clear, .equals { 
-  background: gray;
+  font-size: 25px;
 }
 
 .zero {
@@ -26,20 +29,21 @@
 }
 
 .operator {
-  background: rgb(226, 161, 40);
+  background: rgba(255, 167, 11, 1);
+  font-size: 25px;
 }
 
 .equation {
   grid-column: 1/4;
   line-height: 60px;
   text-align: center;
-  background: aquamarine;
+  /* background: aquamarine; */
   border: 1px solid black;
-  font-size: 20px;
 }
 
 .prevCalcsArea {
   grid-column: 1/5;
   background: rgb(164, 164, 255);
   text-align: center;
+  padding: 10px;
 }

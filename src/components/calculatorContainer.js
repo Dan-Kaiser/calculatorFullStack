@@ -7,9 +7,7 @@ const CalculatorContainer = (props) => {
   return (
     <div className='calculatorContainer'>
       <EquationArea equationText={props.equationText} />
-      <CalculatorButton classNamed='clear' buttonText='C' clickFunc={() => {
-        console.log('IMPLEMENT ME, JUST CLEAR THE STATE');
-      }} />
+      <CalculatorButton classNamed='clear' buttonText='C' clickFunc={props.clearFunc} />
       <CalculatorButton classNamed='numButton' buttonText='7' clickFunc={props.clickFunc} />
       <CalculatorButton classNamed='numButton' buttonText='8' clickFunc={props.clickFunc} />
       <CalculatorButton classNamed='numButton' buttonText='9' clickFunc={props.clickFunc} />
