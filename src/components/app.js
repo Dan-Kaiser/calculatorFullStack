@@ -41,7 +41,7 @@ class App extends React.Component {
 
   componentWillMount() {
     this.queryRecentResults();
-    // window.setInterval(this.queryRecentResults, 1000);
+    window.setInterval(this.queryRecentResults, 1000);
   }
 
   clearState() {
