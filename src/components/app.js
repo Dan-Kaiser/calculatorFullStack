@@ -94,9 +94,7 @@ class App extends React.Component {
     this.setState({
       equation: updatedEquation,
       operator: currOperator
-    }, () => {
-      // console.log(this.state.equation);
-    })
+    });
   }
 
   insertToDB(event) {
